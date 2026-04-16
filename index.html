@@ -3,36 +3,858 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AngorSlopEditorial</title>
+    <title>Angor Editorial Demo</title>
+    <meta
+      name="description"
+      content="An editorial-style demo landing page for Angor: a calm, premium introduction to decentralized project funding."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    >
     <style>
       :root {
-        color-scheme: light dark;
-        font-family: Arial, sans-serif;
+        color-scheme: light;
+        --bg: #f6f1e8;
+        --paper: #fffdf8;
+        --paper-strong: #f0e7d8;
+        --ink: #171717;
+        --muted: #5f5a52;
+        --line: rgba(23, 23, 23, 0.12);
+        --line-strong: rgba(23, 23, 23, 0.2);
+        --accent: #b45f28;
+        --accent-soft: #efe1d3;
+        --shadow: 0 30px 80px rgba(25, 22, 18, 0.08);
+        --radius: 28px;
+        --max-width: 1220px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        min-height: 100vh;
+        background:
+          radial-gradient(circle at top, rgba(255, 255, 255, 0.8), transparent 38%),
+          linear-gradient(180deg, #fbf8f2 0%, var(--bg) 48%, #efe6d7 100%);
+        color: var(--ink);
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page-shell {
+        width: min(calc(100% - 40px), var(--max-width));
+        margin: 20px auto;
+        background: rgba(255, 253, 248, 0.84);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        backdrop-filter: blur(24px);
+      }
+
+      .topbar,
+      .section,
+      .footer {
+        padding-left: clamp(22px, 4vw, 48px);
+        padding-right: clamp(22px, 4vw, 48px);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 22px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
         display: grid;
         place-items: center;
-        background: #0f172a;
-        color: #e2e8f0;
+        background: linear-gradient(145deg, #1f1f1f, #3b3128);
+        color: #f6f1e8;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 1.2rem;
       }
 
-      main {
-        text-align: center;
-        padding: 2rem;
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.94rem;
       }
 
-      h1 {
-        margin-bottom: 0.5rem;
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--ink);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: clamp(28px, 4vw, 54px);
+        padding-top: clamp(34px, 5vw, 58px);
+        padding-bottom: clamp(44px, 6vw, 74px);
+        align-items: end;
+      }
+
+      .eyebrow,
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        font-weight: 700;
+      }
+
+      .eyebrow::before,
+      .kicker::before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.5;
+      }
+
+      .hero h1,
+      .display {
+        margin: 18px 0 0;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(3.2rem, 8vw, 6.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.06em;
+        font-weight: 500;
+      }
+
+      .hero h1 span,
+      .display span {
+        display: block;
+      }
+
+      .hero p.lead {
+        max-width: 42rem;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.04rem, 2.4vw, 1.24rem);
+        line-height: 1.75;
+      }
+
+      .actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 22px;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.55);
+        font-weight: 600;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(23, 23, 23, 0.34);
+      }
+
+      .button.primary {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #f6f1e8;
+      }
+
+      .button.primary:hover,
+      .button.primary:focus-visible {
+        background: #2b2926;
+      }
+
+      .hero-note {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .hero-note span {
+        padding-right: 18px;
+        border-right: 1px solid var(--line);
+      }
+
+      .hero-note span:last-child {
+        border-right: 0;
+        padding-right: 0;
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 620px;
+        border-radius: var(--radius);
+        padding: 26px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 250, 242, 0.92)),
+          linear-gradient(145deg, #f8eee1, #f4efe8);
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        overflow: hidden;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 24px;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        pointer-events: none;
+      }
+
+      .issue-card,
+      .story-card,
+      .metric-card,
+      .feature-card,
+      .split-card,
+      .closing-card {
+        border-radius: 24px;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        background: rgba(255, 255, 255, 0.74);
+        box-shadow: 0 18px 48px rgba(30, 27, 22, 0.05);
+      }
+
+      .issue-card {
+        position: absolute;
+        top: 34px;
+        right: 28px;
+        width: min(270px, 72%);
+        padding: 22px;
+        background: rgba(255, 251, 245, 0.92);
+      }
+
+      .issue-label,
+      .small-label {
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .issue-card h2 {
+        margin: 10px 0 12px;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 2.1rem;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 500;
+      }
+
+      .issue-card p,
+      .story-card p,
+      .metric-copy,
+      .feature-card p,
+      .split-card p,
+      .closing-copy,
+      .section-copy,
+      .timeline-copy,
+      .footer p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .issue-card p,
+      .story-card p,
+      .metric-copy,
+      .feature-card p,
+      .split-card p,
+      .timeline-copy,
+      .footer p {
+        margin: 0;
+      }
+
+      .story-card {
+        position: absolute;
+        left: 28px;
+        bottom: 34px;
+        width: min(330px, 78%);
+        padding: 24px;
+      }
+
+      .story-card h3,
+      .feature-card h3,
+      .split-card h3,
+      .closing-card h3,
+      .timeline-step h3 {
+        margin: 12px 0 10px;
+        font-size: 1.15rem;
+        line-height: 1.3;
+      }
+
+      .story-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .metric-card {
+        position: absolute;
+        right: 56px;
+        bottom: 180px;
+        width: 190px;
+        padding: 18px;
+        background: rgba(239, 225, 211, 0.82);
+      }
+
+      .metric-value {
+        display: block;
+        margin-top: 10px;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 2.4rem;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+      }
+
+      .divider {
+        border-top: 1px solid var(--line);
+      }
+
+      .section {
+        padding-top: clamp(48px, 7vw, 96px);
+        padding-bottom: clamp(48px, 7vw, 96px);
+      }
+
+      .intro-grid,
+      .principles-grid,
+      .story-grid,
+      .audience-grid,
+      .closing-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .intro-grid {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+      }
+
+      .section-heading {
+        margin: 14px 0 0;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(2.3rem, 4.5vw, 4.5rem);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+        font-weight: 500;
+      }
+
+      .section-copy {
+        margin: 0;
+        font-size: 1.02rem;
+      }
+
+      .section-copy + .section-copy {
+        margin-top: 18px;
+      }
+
+      .pull-quote {
+        margin-top: 28px;
+        padding: 30px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 247, 238, 0.88));
+        border: 1px solid rgba(23, 23, 23, 0.08);
+      }
+
+      .pull-quote p {
+        margin: 0;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(1.65rem, 3vw, 2.4rem);
+        line-height: 1.18;
+        letter-spacing: -0.045em;
+      }
+
+      .principles-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 36px;
+      }
+
+      .feature-card {
+        padding: 28px;
+      }
+
+      .feature-number {
+        color: var(--accent);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .story-grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        align-items: start;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline-step {
+        padding: 24px 24px 22px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .timeline-index {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .timeline-copy {
+        margin: 0;
+      }
+
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 36px;
+      }
+
+      .split-card {
+        padding: 30px;
+      }
+
+      .split-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .split-card li {
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .closing-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        align-items: stretch;
+      }
+
+      .closing-card {
+        padding: clamp(28px, 4vw, 42px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 320px;
+      }
+
+      .closing-card .display {
+        font-size: clamp(2.4rem, 5vw, 4.9rem);
+      }
+
+      .closing-copy {
+        margin: 18px 0 0;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 24px;
+        padding-bottom: 28px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 1080px) {
+        .hero,
+        .intro-grid,
+        .story-grid,
+        .closing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 560px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .principles-grid,
+        .audience-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar,
+        .footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .metric-card {
+          right: 28px;
+          bottom: 210px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page-shell {
+          width: min(calc(100% - 20px), var(--max-width));
+          margin: 10px auto;
+          border-radius: 24px;
+        }
+
+        .hero-visual {
+          min-height: 520px;
+          padding: 18px;
+        }
+
+        .issue-card,
+        .story-card,
+        .metric-card {
+          position: relative;
+          inset: auto;
+          width: 100%;
+        }
+
+        .story-card,
+        .metric-card {
+          margin-top: 16px;
+        }
+
+        .hero-note {
+          display: grid;
+          gap: 10px;
+        }
+
+        .hero-note span {
+          border-right: 0;
+          padding-right: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Hello, world!</h1>
-      <p>AngorSlopEditorial is live.</p>
-    </main>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Angor home">
+          <span class="brand-mark">A</span>
+          <span>Angor</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#model">The Model</a>
+          <a href="#principles">Principles</a>
+          <a href="#story">How It Works</a>
+          <a href="#audience">Who It's For</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="section hero">
+          <div>
+            <span class="eyebrow">A calmer future for project funding</span>
+            <h1>
+              <span>DECENTRALIZED</span>
+              <span>KICKSTARTER</span>
+            </h1>
+            <p class="lead">
+              Angor reframes crowdfunding as something more durable than hype:
+              a transparent, Bitcoin-native way for communities to back ambitious
+              work with patience, clarity, and shared conviction.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="#model">Read the thesis</a>
+              <a class="button" href="#story">See the funding story</a>
+            </div>
+            <div class="hero-note" aria-label="Highlights">
+              <span>Built for projects, communities, and long-term belief.</span>
+              <span>Structured around trust, milestones, and aligned participation.</span>
+            </div>
+          </div>
+
+          <aside class="hero-visual" aria-label="Editorial overview">
+            <article class="issue-card">
+              <div class="issue-label">Issue 01 / Editorial Demo</div>
+              <h2>The new patronage.</h2>
+              <p>
+                Not a louder campaign page. A more intelligent format for backing
+                serious builders with shared visibility from the start.
+              </p>
+            </article>
+
+            <article class="metric-card">
+              <div class="small-label">Core idea</div>
+              <span class="metric-value">Funding with context.</span>
+              <p class="metric-copy">
+                Every contribution belongs to a clearer story about what is being made.
+              </p>
+            </article>
+
+            <article class="story-card">
+              <div class="small-label">Cover Story</div>
+              <h3>A campaign should read like conviction, not theater.</h3>
+              <p>
+                Angor gives founders a composed way to present a project and gives
+                supporters a cleaner way to understand what they are actually backing.
+              </p>
+              <div class="story-meta">
+                <span>Bitcoin-native</span>
+                <span>Transparent by design</span>
+              </div>
+            </article>
+          </aside>
+        </section>
+
+        <section class="section divider" id="model">
+          <div class="intro-grid">
+            <div>
+              <span class="kicker">Why Angor feels different</span>
+              <h2 class="section-heading">A funding page that behaves like a publication.</h2>
+            </div>
+            <div>
+              <p class="section-copy">
+                Most fundraising interfaces are designed to accelerate impulse. Angor
+                can present a more thoughtful alternative: funding as an informed,
+                transparent relationship between builders and believers.
+              </p>
+              <p class="section-copy">
+                This demo leans into that premise. The pacing is quieter, the hierarchy
+                is sharper, and the story unfolds in chapters rather than shouting all
+                at once. The result is a landing page that feels considered, cultural,
+                and premium without losing clarity.
+              </p>
+              <div class="pull-quote">
+                <p>
+                  “The best funding model is not the loudest one. It is the one that
+                  earns confidence, keeps context intact, and makes progress legible.”
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section divider" id="principles">
+          <span class="kicker">Editorial principles</span>
+          <h2 class="section-heading">Designed to explain, not overwhelm.</h2>
+          <div class="principles-grid">
+            <article class="feature-card">
+              <div class="feature-number">01 / Measured</div>
+              <h3>Calm confidence over conversion noise.</h3>
+              <p>
+                Angor does not need a wall of dashboards to feel credible. A more
+                refined presentation turns trust, structure, and taste into the proof.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-number">02 / Structured</div>
+              <h3>Narrative blocks with a clear reading rhythm.</h3>
+              <p>
+                Each section introduces one idea at a time: what Angor is, why it
+                matters, how campaigns move, and why backers can follow the logic.
+              </p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-number">03 / Premium</div>
+              <h3>Typography and composition do real strategic work.</h3>
+              <p>
+                The page borrows from editorial design where hierarchy, spacing, and
+                restraint help ambitious ideas feel legible, modern, and worth attention.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section divider" id="story">
+          <div class="story-grid">
+            <div>
+              <span class="kicker">How the story unfolds</span>
+              <h2 class="section-heading">From idea to backed project, with the middle made visible.</h2>
+              <p class="section-copy">
+                Angor is compelling because it does not reduce funding to a single
+                moment of clicking support. It gives projects a way to be read,
+                understood, and followed as they move from proposal to progress.
+              </p>
+            </div>
+            <div class="timeline">
+              <article class="timeline-step">
+                <span class="timeline-index">01</span>
+                <h3>Publish the thesis.</h3>
+                <p class="timeline-copy">
+                  A founder introduces the project with enough clarity that supporters
+                  can evaluate the ambition, the direction, and the reasons it deserves backing.
+                </p>
+              </article>
+              <article class="timeline-step">
+                <span class="timeline-index">02</span>
+                <h3>Invite conviction, not just attention.</h3>
+                <p class="timeline-copy">
+                  Backers participate in a funding model that emphasizes transparency
+                  and a shared understanding of what progress should look like.
+                </p>
+              </article>
+              <article class="timeline-step">
+                <span class="timeline-index">03</span>
+                <h3>Let milestones carry the narrative forward.</h3>
+                <p class="timeline-copy">
+                  Instead of disappearing after the raise, the project continues as a
+                  visible story with progress that can be followed over time.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section divider" id="audience">
+          <span class="kicker">Two audiences, one language</span>
+          <h2 class="section-heading">Clear enough for builders. Reassuring enough for backers.</h2>
+          <div class="audience-grid">
+            <article class="split-card">
+              <div class="small-label">For founders</div>
+              <h3>A platform that respects the seriousness of building.</h3>
+              <p>
+                Angor can present ambitious work with more precision than a generic
+                campaign page. It helps founders frame what they are making, why it
+                matters, and how supporters should understand the path ahead.
+              </p>
+              <ul>
+                <li>Present a vision without reducing it to marketing noise.</li>
+                <li>Shape campaigns around clarity, milestones, and credibility.</li>
+                <li>Invite support from communities that value substance.</li>
+              </ul>
+            </article>
+            <article class="split-card">
+              <div class="small-label">For backers</div>
+              <h3>A funding experience that feels readable and responsible.</h3>
+              <p>
+                Backers should not need to decode a maze of urgency tactics to know
+                what they are backing. This format gives them context first and action second.
+              </p>
+              <ul>
+                <li>Understand the project before being asked to commit.</li>
+                <li>Follow the logic of progress rather than a burst of launch hype.</li>
+                <li>Support with more confidence because the narrative stays intact.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section divider">
+          <div class="closing-grid">
+            <div class="closing-card">
+              <div>
+                <div class="small-label">Final note</div>
+                <h2 class="display">
+                  <span>Funding,</span>
+                  <span>beautifully edited.</span>
+                </h2>
+                <p class="closing-copy">
+                  This concept treats Angor not as another crypto homepage, but as a
+                  refined introduction to a new model of public funding. It turns
+                  trust, narrative, and composition into part of the product itself.
+                </p>
+              </div>
+              <div class="actions">
+                <a class="button primary" href="#top">Return to top</a>
+                <a class="button" href="https://angor.io/" target="_blank" rel="noreferrer">Visit current site</a>
+              </div>
+            </div>
+            <div class="closing-card">
+              <div>
+                <div class="small-label">Positioning</div>
+                <h3>What this demo is trying to say</h3>
+                <p class="closing-copy">
+                  Angor belongs in the category of thoughtful infrastructure, not
+                  growth-page theater. A more editorial homepage helps signal maturity,
+                  seriousness, and product confidence before a user reads a single detail.
+                </p>
+              </div>
+              <div class="story-meta">
+                <span>Editorial rhythm</span>
+                <span>Premium tone</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Angor editorial landing page demo for founder presentation.</p>
+        <div class="footer-links">
+          <a href="#model">The Model</a>
+          <a href="#story">Funding Story</a>
+          <a href="#audience">Audience</a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
