@@ -9,11 +9,11 @@
     <meta http-equiv="Expires" content="0">
     <meta
       name="description"
-      content="An editorial-style demo landing page for Angor: a calm, premium introduction to decentralized project funding."
+      content="A simpler, calmer landing page concept for Angor."
     >
     <script>
       (function () {
-        var buildId = "2026-04-16-editorial-v3";
+        var buildId = "2026-04-16-editorial-v4";
         var url = new URL(window.location.href);
 
         if (url.searchParams.get("v") !== buildId) {
@@ -25,26 +25,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap"
       rel="stylesheet"
     >
     <style>
       :root {
-        color-scheme: light;
-        --bg: #f7f4ee;
-        --paper: rgba(255, 255, 255, 0.8);
-        --paper-strong: #ffffff;
-        --panel: #f2ede5;
-        --ink: #161514;
-        --muted: #666055;
-        --line: rgba(22, 21, 20, 0.1);
-        --line-strong: rgba(22, 21, 20, 0.2);
-        --accent: #141414;
-        --accent-soft: #efe7dc;
-        --highlight: #d7c2a6;
-        --shadow: 0 24px 80px rgba(29, 24, 18, 0.08);
+        color-scheme: dark;
+        --bg: #171818;
+        --panel: #1d1f1e;
+        --panel-strong: #202322;
+        --panel-soft: #242725;
+        --text: #f1f4f1;
+        --muted: #aeb6af;
+        --line: rgba(255, 255, 255, 0.1);
+        --accent: #6ca978;
+        --accent-strong: #81bf8b;
+        --accent-soft: rgba(108, 169, 120, 0.14);
+        --shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+        --max-width: 1180px;
         --radius: 28px;
-        --max-width: 1240px;
       }
 
       * {
@@ -57,10 +56,11 @@
 
       body {
         margin: 0;
+        min-height: 100vh;
         background:
-          radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 30%),
-          linear-gradient(180deg, #fbfaf7 0%, var(--bg) 50%, #f0ebe2 100%);
-        color: var(--ink);
+          radial-gradient(circle at top, rgba(108, 169, 120, 0.08), transparent 28%),
+          linear-gradient(180deg, #1a1b1a 0%, #161716 100%);
+        color: var(--text);
         font-family: "Inter", Arial, sans-serif;
       }
 
@@ -70,144 +70,157 @@
       }
 
       img {
-        max-width: 100%;
         display: block;
+        max-width: 100%;
       }
 
-      .page-shell {
-        width: min(calc(100% - 40px), var(--max-width));
-        margin: 20px auto;
-        background: rgba(255, 252, 248, 0.78);
-        border: 1px solid rgba(255, 255, 255, 0.65);
-        border-radius: 34px;
+      .page {
+        width: min(calc(100% - 32px), var(--max-width));
+        margin: 16px auto;
+        background: rgba(22, 23, 22, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 32px;
         box-shadow: var(--shadow);
         overflow: hidden;
-        backdrop-filter: blur(24px);
+        backdrop-filter: blur(20px);
       }
 
       .topbar,
-      .section,
+      .hero,
+      .supporting,
       .footer {
-        padding-left: clamp(22px, 4vw, 48px);
-        padding-right: clamp(22px, 4vw, 48px);
+        padding-left: clamp(22px, 4vw, 44px);
+        padding-right: clamp(22px, 4vw, 44px);
       }
 
       .topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        gap: 20px;
+        padding-top: 18px;
+        padding-bottom: 18px;
         border-bottom: 1px solid var(--line);
       }
 
       .brand {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 12px;
-        font-size: 0.95rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        font-size: 0.85rem;
       }
 
       .brand-mark {
         width: 34px;
         height: 34px;
-        border-radius: 10px;
+        border-radius: 11px;
+        background:
+          radial-gradient(circle, rgba(108, 169, 120, 0.24), transparent 70%),
+          linear-gradient(180deg, #6fb27c, #5d9f69);
         display: grid;
         place-items: center;
-        background: linear-gradient(145deg, #111111, #3c352d);
-        color: #f6f1e8;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: 1.2rem;
+        box-shadow: 0 0 32px rgba(108, 169, 120, 0.28);
       }
 
-      .nav {
+      .brand-mark img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .topbar-links {
         display: flex;
         align-items: center;
-        gap: 22px;
-        flex-wrap: wrap;
+        gap: 18px;
         color: var(--muted);
-        font-size: 0.94rem;
+        font-size: 0.92rem;
       }
 
-      .nav a:hover,
-      .nav a:focus-visible {
-        color: var(--ink);
+      .topbar-links a:hover,
+      .topbar-links a:focus-visible {
+        color: var(--text);
       }
 
       .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-        gap: clamp(28px, 5vw, 70px);
-        padding-top: clamp(30px, 5vw, 64px);
-        padding-bottom: clamp(52px, 7vw, 86px);
-        align-items: center;
+        padding-top: clamp(56px, 10vw, 110px);
+        padding-bottom: clamp(52px, 8vw, 92px);
+        text-align: center;
       }
 
-      .eyebrow,
-      .kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--muted);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+      .hero-mark {
+        width: clamp(82px, 10vw, 96px);
+        height: clamp(82px, 10vw, 96px);
+        margin: 0 auto 28px;
+        border-radius: 24px;
+        background:
+          radial-gradient(circle, rgba(108, 169, 120, 0.36), transparent 68%),
+          linear-gradient(180deg, #72b87f, #5c9968);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 0 56px rgba(108, 169, 120, 0.28);
+      }
+
+      .hero-mark img {
+        width: 46px;
+        height: 46px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(108, 169, 120, 0.22);
+        background: var(--accent-soft);
+        color: #c2d6c6;
         font-size: 0.74rem;
         font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
-      .eyebrow::before,
-      .kicker::before {
-        content: "";
-        width: 30px;
-        height: 1px;
-        background: currentColor;
-        opacity: 0.5;
-      }
-
-      .hero h1,
-      .display {
-        margin: 18px 0 0;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: clamp(3.8rem, 8vw, 7.4rem);
-        line-height: 0.9;
+      .hero h1 {
+        margin: 24px auto 0;
+        max-width: 13ch;
+        font-size: clamp(3rem, 7vw, 5.8rem);
+        line-height: 0.98;
         letter-spacing: -0.06em;
-        font-weight: 500;
+        font-weight: 800;
       }
 
-      .hero h1 span,
-      .display span {
-        display: block;
+      .hero h1 .accent {
+        color: var(--accent);
+        font-style: italic;
+        font-weight: 600;
       }
 
-      .hero p.lead {
-        max-width: 34rem;
-        margin: 20px 0 0;
+      .hero-copy {
+        max-width: 42rem;
+        margin: 18px auto 0;
         color: var(--muted);
-        font-size: clamp(1.02rem, 2vw, 1.18rem);
-        line-height: 1.6;
+        font-size: clamp(1rem, 2vw, 1.12rem);
+        line-height: 1.65;
       }
 
-      .actions {
+      .hero-actions {
         display: flex;
+        justify-content: center;
         gap: 14px;
         flex-wrap: wrap;
-        margin-top: 26px;
+        margin-top: 30px;
       }
 
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 52px;
-        padding: 0 22px;
-        border-radius: 999px;
-        border: 1px solid var(--line-strong);
-        background: rgba(255, 255, 255, 0.55);
-        font-weight: 600;
+        min-height: 56px;
+        padding: 0 24px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        font-weight: 700;
+        font-size: 1rem;
         transition:
           transform 180ms ease,
           border-color 180ms ease,
@@ -217,752 +230,367 @@
       .button:hover,
       .button:focus-visible {
         transform: translateY(-1px);
-        border-color: rgba(23, 23, 23, 0.34);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .button.secondary {
+        background: rgba(0, 0, 0, 0.28);
       }
 
       .button.primary {
-        background: var(--ink);
-        border-color: var(--ink);
-        color: #f6f1e8;
+        background: #5d9568;
+        border-color: #5d9568;
+        color: #f4fbf4;
       }
 
       .button.primary:hover,
       .button.primary:focus-visible {
-        background: #2b2926;
+        background: #6aa575;
       }
 
-      .hero-note {
-        margin-top: 28px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        color: var(--muted);
-        font-size: 0.88rem;
+      .supporting {
+        padding-top: 0;
+        padding-bottom: 42px;
       }
 
-      .hero-note span {
-        padding: 10px 14px;
-        border-radius: 999px;
+      .hero-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .panel,
+      .mini-panel,
+      .signal-card {
+        border-radius: 24px;
         border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.5);
+        background: linear-gradient(180deg, rgba(35, 38, 36, 0.95), rgba(27, 29, 28, 0.95));
       }
 
-      .hero-visual {
-        position: relative;
-        min-height: 640px;
-        border-radius: var(--radius);
-        padding: 22px;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(249, 244, 237, 0.95)),
-          linear-gradient(145deg, #f7f0e5, #f2ece4);
-        border: 1px solid rgba(23, 23, 23, 0.08);
-        overflow: hidden;
-      }
-
-      .hero-visual::before {
-        content: "";
-        position: absolute;
-        inset: 18px;
-        border-radius: 24px;
-        border: 1px solid rgba(23, 23, 23, 0.08);
-        pointer-events: none;
-      }
-
-      .hero-glow {
-        position: absolute;
-        inset: auto auto 70px -40px;
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        background: rgba(215, 194, 166, 0.35);
-        filter: blur(10px);
-      }
-
-      .hero-window,
-      .mini-card,
-      .feature-card,
-      .proof-card,
-      .split-card,
-      .closing-card {
-        border-radius: 24px;
-        border: 1px solid rgba(23, 23, 23, 0.08);
-        background: rgba(255, 255, 255, 0.74);
-        box-shadow: 0 18px 48px rgba(30, 27, 22, 0.05);
-      }
-
-      .hero-window {
-        position: absolute;
-        inset: 48px 34px 34px 34px;
+      .panel {
         padding: 24px;
-        background: rgba(255, 255, 255, 0.78);
       }
 
-      .window-chrome {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      .panel-header,
+      .mini-grid,
+      .signal-grid {
+        display: grid;
         gap: 16px;
-        margin-bottom: 18px;
       }
 
-      .dots {
-        display: flex;
-        gap: 8px;
+      .panel-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
       }
 
-      .dots span {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(22, 21, 20, 0.2);
-      }
-
-      .window-tag,
-      .small-label {
-        color: var(--muted);
+      .kicker,
+      .label {
         font-size: 0.72rem;
+        font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        font-weight: 700;
+        color: var(--muted);
       }
 
-      .hero-window h2 {
-        margin: 0;
+      .panel-title {
+        margin: 10px 0 0;
         font-family: "Newsreader", Georgia, serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.96;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        line-height: 0.95;
         letter-spacing: -0.05em;
-        font-weight: 500;
+        font-weight: 600;
       }
 
-      .hero-window p,
-      .feature-card p,
-      .proof-card p,
-      .split-card p,
-      .closing-copy,
-      .footer p {
+      .panel-copy {
+        margin: 10px 0 0;
+        max-width: 30rem;
         color: var(--muted);
         line-height: 1.6;
       }
 
-      .hero-window p,
-      .feature-card p,
-      .proof-card p,
-      .split-card p,
-      .footer p {
-        margin: 0;
-      }
-
-      .window-subtitle {
-        margin-top: 14px;
-        max-width: 22rem;
-        font-size: 0.96rem;
-      }
-
-      .campaign-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) 170px;
-        gap: 18px;
-        margin-top: 24px;
-      }
-
-      .campaign-page {
-        padding: 20px;
-        border-radius: 22px;
-        background: linear-gradient(180deg, #f7f2eb, #fffdf9);
-        border: 1px solid var(--line);
-      }
-
-      .campaign-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 20px;
-      }
-
-      .campaign-badge {
+      .status-pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 10px;
+        padding: 10px 12px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid var(--line);
-        font-size: 0.78rem;
-        font-weight: 600;
-      }
-
-      .campaign-title {
-        margin: 0;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: clamp(1.8rem, 3vw, 2.6rem);
-        line-height: 0.96;
-        letter-spacing: -0.045em;
-      }
-
-      .campaign-summary {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .stat-block,
-      .story-block,
-      .rail-card {
-        border-radius: 18px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.78);
-      }
-
-      .stat-block {
-        padding: 16px;
-      }
-
-      .stat-value {
-        display: block;
-        margin-top: 8px;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: 1.6rem;
-        letter-spacing: -0.05em;
-      }
-
-      .story-block {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 12px;
-        margin-top: 14px;
-        padding: 14px;
-      }
-
-      .story-image {
-        min-height: 180px;
-        border-radius: 16px;
-        background:
-          linear-gradient(135deg, rgba(215, 194, 166, 0.65), rgba(255, 255, 255, 0.9)),
-          linear-gradient(180deg, #ebe2d4, #fffaf3);
-      }
-
-      .story-copy {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-      }
-
-      .story-copy h3,
-      .feature-card h3,
-      .split-card h3,
-      .closing-card h3,
-      .proof-card h3 {
-        margin: 0;
-        font-size: 1.15rem;
-        line-height: 1.3;
-      }
-
-      .campaign-rail {
-        display: grid;
-        gap: 12px;
-      }
-
-      .rail-card {
-        padding: 16px;
-      }
-
-      .rail-card strong {
-        display: block;
-        margin-top: 8px;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: 1.4rem;
-        letter-spacing: -0.04em;
-      }
-
-      .divider {
-        border-top: 1px solid var(--line);
-      }
-
-      .section {
-        padding-top: clamp(44px, 6vw, 86px);
-        padding-bottom: clamp(44px, 6vw, 86px);
-      }
-
-      .section-header,
-      .principles-grid,
-      .proof-grid,
-      .audience-grid,
-      .closing-grid {
-        display: grid;
-        gap: 24px;
-      }
-
-      .section-header {
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        margin-bottom: 30px;
-      }
-
-      .section-heading {
-        margin: 10px 0 0;
-        font-family: "Newsreader", Georgia, serif;
-        font-size: clamp(2.2rem, 4.5vw, 4.2rem);
-        line-height: 0.96;
-        letter-spacing: -0.05em;
-        font-weight: 500;
-      }
-
-      .section-note {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.98rem;
-        max-width: 24rem;
-        line-height: 1.5;
-      }
-
-      .principles-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .feature-card {
-        padding: 28px;
-        min-height: 220px;
-      }
-
-      .feature-number {
-        color: var(--accent);
-        font-size: 0.88rem;
+        background: rgba(108, 169, 120, 0.12);
+        color: #c8d9cb;
+        border: 1px solid rgba(108, 169, 120, 0.18);
+        font-size: 0.8rem;
         font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
       }
 
-      .proof-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        display: grid;
-        gap: 24px;
+      .campaign-card {
+        margin-top: 18px;
+        padding: 20px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #202423, #1a1d1c);
+        border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .proof-card {
-        padding: 28px;
-        border-radius: 22px;
-      }
-
-      .proof-card.large {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 220px;
-        gap: 20px;
-        align-items: center;
-      }
-
-      .proof-stack {
-        display: grid;
+      .campaign-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
         gap: 16px;
       }
 
-      .audience-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .campaign-name {
+        margin: 8px 0 0;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
       }
 
-      .split-card {
-        padding: 30px;
+      .campaign-metric {
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 700;
       }
 
-      .split-card ul {
-        list-style: none;
-        padding: 0;
-        margin: 18px 0 0;
-        display: grid;
-        gap: 12px;
+      .progress {
+        height: 10px;
+        margin-top: 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
       }
 
-      .split-card li {
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
+      .progress > span {
+        display: block;
+        width: 68%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #79bf86, #5d9568);
+      }
+
+      .mini-grid {
+        margin-top: 18px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .mini-panel {
+        padding: 16px;
+      }
+
+      .mini-value {
+        display: block;
+        margin-top: 8px;
+        font-size: 1.12rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .signal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 18px;
+      }
+
+      .signal-card {
+        padding: 18px;
+      }
+
+      .signal-card h3 {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        line-height: 1.35;
+      }
+
+      .signal-card p {
+        margin: 8px 0 0;
         color: var(--muted);
         line-height: 1.55;
       }
 
-      .closing-grid {
-        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-        align-items: stretch;
+      .side-panel {
+        display: grid;
+        gap: 18px;
       }
 
-      .closing-card {
-        padding: clamp(28px, 4vw, 42px);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 320px;
+      .side-box {
+        padding: 22px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(34, 37, 35, 0.98), rgba(26, 28, 27, 0.98));
       }
 
-      .closing-card .display {
-        font-size: clamp(2.8rem, 5vw, 5rem);
+      .side-box h3 {
+        margin: 12px 0 0;
+        font-size: 1.15rem;
+        line-height: 1.3;
       }
 
-      .closing-copy {
-        margin: 16px 0 0;
+      .side-box p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.58;
       }
 
       .footer {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        padding-top: 24px;
-        padding-bottom: 28px;
+        gap: 16px;
+        padding-top: 20px;
+        padding-bottom: 24px;
         border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.92rem;
+        font-size: 0.9rem;
       }
 
-      .footer-links {
-        display: flex;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      @media (max-width: 1080px) {
-        .hero,
-        .proof-grid,
-        .closing-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-visual {
-          min-height: 700px;
-        }
-
-        .proof-card.large {
-          grid-template-columns: 1fr;
-        }
-
-        .section-header {
+      @media (max-width: 980px) {
+        .hero-panel {
           grid-template-columns: 1fr;
         }
       }
 
-      @media (max-width: 860px) {
-        .principles-grid,
-        .audience-grid {
+      @media (max-width: 760px) {
+        .mini-grid,
+        .signal-grid {
           grid-template-columns: 1fr;
         }
 
+        .panel-header,
         .topbar,
         .footer {
+          grid-template-columns: 1fr;
           flex-direction: column;
           align-items: flex-start;
         }
 
-        .campaign-layout,
-        .story-block {
-          grid-template-columns: 1fr;
-        }
-
-        .campaign-summary {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .page-shell {
-          width: min(calc(100% - 20px), var(--max-width));
-          margin: 10px auto;
-          border-radius: 24px;
-        }
-
-        .hero-visual {
-          min-height: auto;
-          padding: 18px;
-        }
-
-        .hero-window {
-          position: relative;
-          inset: auto;
-        }
-
-        .hero-note {
-          gap: 10px;
+        .campaign-top {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page-shell">
+    <div class="page">
       <header class="topbar">
         <a class="brand" href="#top" aria-label="Angor home">
-          <span class="brand-mark">A</span>
+          <span class="brand-mark">
+            <img src="https://angor.io/images/app-icon-dark-mode.png" alt="">
+          </span>
           <span>Angor</span>
         </a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#model">The Model</a>
-          <a href="#principles">Principles</a>
-          <a href="#story">How It Works</a>
-          <a href="#audience">Who It's For</a>
-        </nav>
+        <div class="topbar-links">
+          <a href="https://angor.io/explore" target="_blank" rel="noreferrer">Fund projects</a>
+          <a href="https://angor.io/launch" target="_blank" rel="noreferrer">Get funded</a>
+        </div>
       </header>
 
       <main id="top">
-        <section class="section hero">
-          <div>
-            <span class="eyebrow">A cleaner public funding format</span>
-            <h1>
-              <span>DECENTRALIZED</span>
-              <span>KICKSTARTER</span>
-            </h1>
-            <p class="lead">
-              Angor should feel less like a crypto landing page and more like a
-              beautifully edited home for serious projects, backers, and momentum.
-            </p>
-            <div class="actions">
-              <a class="button primary" href="#model">Explore the concept</a>
-              <a class="button" href="#audience">See who it serves</a>
-            </div>
-            <div class="hero-note" aria-label="Highlights">
-              <span>Editorial pacing</span>
-              <span>Bitcoin-native framing</span>
-              <span>Minimal, premium, legible</span>
-            </div>
+        <section class="hero">
+          <div class="hero-mark">
+            <img src="https://angor.io/images/app-icon-dark-mode.png" alt="">
           </div>
-
-          <aside class="hero-visual" aria-label="Editorial overview">
-            <div class="hero-glow"></div>
-            <article class="hero-window">
-              <div class="window-chrome">
-                <div class="dots" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="window-tag">Editorial campaign view</div>
-              </div>
-              <h2>Funding pages that feel composed, not frantic.</h2>
-              <p class="window-subtitle">
-                A project is presented like a cover story: clear thesis, visible traction,
-                calm structure, and room for belief.
-              </p>
-
-              <div class="campaign-layout">
-                <div class="campaign-page">
-                  <div class="campaign-head">
-                    <div>
-                      <div class="small-label">Feature project</div>
-                      <h3 class="campaign-title">Open funding for ambitious work.</h3>
-                    </div>
-                    <div class="campaign-badge">Mainnet live</div>
-                  </div>
-
-                  <div class="campaign-summary">
-                    <div class="stat-block">
-                      <div class="small-label">Raised</div>
-                      <span class="stat-value">340 BTC</span>
-                    </div>
-                    <div class="stat-block">
-                      <div class="small-label">Backers</div>
-                      <span class="stat-value">1,240</span>
-                    </div>
-                    <div class="stat-block">
-                      <div class="small-label">Milestone</div>
-                      <span class="stat-value">03 / 05</span>
-                    </div>
-                  </div>
-
-                  <div class="story-block">
-                    <div class="story-image"></div>
-                    <div class="story-copy">
-                      <div class="small-label">What changes</div>
-                      <h3>Less pitch deck. More public conviction.</h3>
-                      <p>
-                        The campaign reads cleanly, shows progress clearly, and lets the
-                        project carry cultural weight.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="campaign-rail">
-                  <div class="rail-card">
-                    <div class="small-label">Signal</div>
-                    <strong>Strong hierarchy</strong>
-                    <p>Big idea first. Details second.</p>
-                  </div>
-                  <div class="rail-card">
-                    <div class="small-label">Tone</div>
-                    <strong>Quiet confidence</strong>
-                    <p>No aggressive launch-page energy.</p>
-                  </div>
-                  <div class="rail-card">
-                    <div class="small-label">Format</div>
-                    <strong>Story-led</strong>
-                    <p>Built to be read, scanned, and trusted.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </aside>
-        </section>
-
-        <section class="section divider" id="model">
-          <div class="section-header">
-            <div>
-              <span class="kicker">The model</span>
-              <h2 class="section-heading">A sharper homepage with far less talking.</h2>
-            </div>
-            <p class="section-note">
-              This version compresses the story into a few high-signal blocks and lets
-              layout, whitespace, and composition carry more of the meaning.
-            </p>
-          </div>
-          <div class="principles-grid">
-            <article class="feature-card">
-              <div class="feature-number">01 / Editorial</div>
-              <h3>Magazine hierarchy, not landing-page clutter.</h3>
-              <p>
-                Large type, curated blocks, and one clear idea per section.
-              </p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-number">02 / Product-led</div>
-              <h3>A visual mockup does more work than six paragraphs.</h3>
-              <p>
-                The right side now shows the idea in a composed interface instead of
-                explaining everything in prose.
-              </p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-number">03 / Premium</div>
-              <h3>Refined enough to feel founder-ready.</h3>
-              <p>
-                Warmer tones, better pacing, and calmer language help Angor feel more mature.
-              </p>
-            </article>
+          <span class="eyebrow">Decentralized Kickstarter</span>
+          <h1>
+            The <span class="accent">only</span> Bitcoin protocol
+            for <span class="accent">funding</span> projects
+          </h1>
+          <p class="hero-copy">
+            A simpler home for launching, backing, and following ambitious work on Bitcoin.
+          </p>
+          <div class="hero-actions">
+            <a class="button secondary" href="https://angor.io/explore" target="_blank" rel="noreferrer">Fund Projects</a>
+            <a class="button primary" href="https://angor.io/launch" target="_blank" rel="noreferrer">Get funded</a>
           </div>
         </section>
 
-        <section class="section divider" id="principles">
-          <div class="section-header">
-            <div>
-              <span class="kicker">Why it lands</span>
-              <h2 class="section-heading">Explain Angor in one screenful.</h2>
+        <section class="supporting">
+          <div class="hero-panel">
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <div class="kicker">Why this version works</div>
+                  <h2 class="panel-title">Clear at a glance.</h2>
+                  <p class="panel-copy">
+                    It keeps the directness of the current homepage, but gives Angor a
+                    calmer, more premium frame.
+                  </p>
+                </div>
+                <div class="status-pill">Mainnet live</div>
+              </div>
+
+              <div class="campaign-card">
+                <div class="campaign-top">
+                  <div>
+                    <div class="label">Featured campaign</div>
+                    <div class="campaign-name">Open-source mining controller</div>
+                  </div>
+                  <div class="campaign-metric">68% funded</div>
+                </div>
+                <div class="progress"><span></span></div>
+                <div class="mini-grid">
+                  <div class="mini-panel">
+                    <div class="label">Raised</div>
+                    <span class="mini-value">34 BTC</span>
+                  </div>
+                  <div class="mini-panel">
+                    <div class="label">Backers</div>
+                    <span class="mini-value">214</span>
+                  </div>
+                  <div class="mini-panel">
+                    <div class="label">Milestone</div>
+                    <span class="mini-value">3 of 5</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="signal-grid">
+                <article class="signal-card">
+                  <div class="label">Launch</div>
+                  <h3>Projects look serious from the first screen.</h3>
+                </article>
+                <article class="signal-card">
+                  <div class="label">Back</div>
+                  <h3>Backers understand what they are funding.</h3>
+                </article>
+                <article class="signal-card">
+                  <div class="label">Follow</div>
+                  <h3>Progress stays visible after the raise.</h3>
+                </article>
+              </div>
             </div>
-            <p class="section-note">
-              The page should communicate its category fast: a better way to fund open projects on Bitcoin.
-            </p>
-          </div>
-          <div class="proof-grid">
-            <article class="proof-card large">
-              <div>
-                <div class="small-label">The core message</div>
-                <h3>Transparent funding for projects people want to exist.</h3>
+
+            <aside class="side-panel">
+              <article class="side-box">
+                <div class="label">Positioning</div>
+                <h3>Simple category language.</h3>
                 <p>
-                  Angor gives builders a cleaner public launch surface and gives backers
-                  a clearer sense of what they are supporting.
+                  “Decentralized Kickstarter” is the right first impression. It explains
+                  Angor before the user has to think.
                 </p>
-              </div>
-              <div class="rail-card">
-                <div class="small-label">Positioning</div>
-                <strong>Decentralized Kickstarter</strong>
-                <p>Simple enough to understand immediately.</p>
-              </div>
-            </article>
-
-            <div class="proof-stack">
-              <article class="proof-card">
-                <div class="small-label">For launch</div>
-                <h3>Make a project legible.</h3>
-                <p>Clear thesis, visible momentum, and a page worth sharing.</p>
               </article>
-              <article class="proof-card">
-                <div class="small-label">For trust</div>
-                <h3>Keep progress visible.</h3>
-                <p>Funding feels steadier when updates and milestones stay readable.</p>
+
+              <article class="side-box">
+                <div class="label">Tone</div>
+                <h3>Minimal, not empty.</h3>
+                <p>
+                  The design is quieter than a typical crypto page, but still feels alive,
+                  modern, and product-led.
+                </p>
               </article>
-            </div>
-          </div>
-        </section>
 
-        <section class="section divider" id="audience">
-          <div class="section-header">
-            <div>
-              <span class="kicker">Two clear audiences</span>
-              <h2 class="section-heading">Built for founders and backers.</h2>
-            </div>
-            <p class="section-note">
-              Short, direct copy works better here than a long explanation of the protocol.
-            </p>
-          </div>
-          <div class="audience-grid">
-            <article class="split-card">
-              <div class="small-label">For founders</div>
-              <h3>A better canvas for serious projects.</h3>
-              <p>
-                Present the idea with clarity, dignity, and enough structure to attract real belief.
-              </p>
-              <ul>
-                <li>Launch with stronger storytelling.</li>
-                <li>Frame milestones cleanly.</li>
-                <li>Look credible from the first impression.</li>
-              </ul>
-            </article>
-            <article class="split-card">
-              <div class="small-label">For backers</div>
-              <h3>A funding experience that feels readable.</h3>
-              <p>
-                Understand what the project is, where it is going, and why it deserves support.
-              </p>
-              <ul>
-                <li>See the thesis quickly.</li>
-                <li>Follow progress without noise.</li>
-                <li>Back with more confidence.</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section class="section divider">
-          <div class="closing-grid">
-            <div class="closing-card">
-              <div>
-                <div class="small-label">Closing frame</div>
-                <h2 class="display">
-                  <span>Less slop.</span>
-                  <span>More signal.</span>
-                </h2>
-                <p class="closing-copy">
-                  This revision trims the copy, sharpens the message, and puts more weight
-                  on composition so the page feels designed instead of narrated.
+              <article class="side-box">
+                <div class="label">Result</div>
+                <h3>Less complexity. More trust.</h3>
+                <p>
+                  Fewer sections, less theory, and a cleaner campaign surface make the
+                  product feel easier and stronger at the same time.
                 </p>
-              </div>
-              <div class="actions">
-                <a class="button primary" href="#top">Return to top</a>
-                <a class="button" href="https://angor.io/" target="_blank" rel="noreferrer">Visit current site</a>
-              </div>
-            </div>
-            <div class="closing-card">
-              <div>
-                <div class="small-label">Positioning</div>
-                <h3>What the founder should feel</h3>
-                <p class="closing-copy">
-                  Angor can look premium, modern, and category-defining without becoming
-                  noisy, generic, or over-explained.
-                </p>
-              </div>
-              <div class="hero-note">
-                <span>Sharper</span>
-                <span>Cleaner</span>
-                <span>Founder-ready</span>
-              </div>
-            </div>
+              </article>
+            </aside>
           </div>
         </section>
       </main>
 
       <footer class="footer">
-        <p>Angor editorial landing page demo.</p>
-        <div class="footer-links">
-          <a href="#model">The Model</a>
-          <a href="#principles">Why It Lands</a>
-          <a href="#audience">Audience</a>
-        </div>
+        <span>Angor landing page demo.</span>
+        <span>Built for a cleaner first impression.</span>
       </footer>
     </div>
   </body>
